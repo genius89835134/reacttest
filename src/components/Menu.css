@@ -1,0 +1,28 @@
+.Menu{
+    background-color: #f5f4f3;
+    height:48px;
+}
+.Menu>ul li {
+    display:inline;
+    padding:2%;
+}
+.Footer{
+    background-color: #f5f4f3;
+}
+.Footer>div{
+    display:inline-block;
+}
+.Content1{
+    height:300px;
+}
+.Content1>div{
+    display:inline-block;
+    width:150px;
+    padding:2%;
+}
+.Product>div{
+    text-align: left;
+}
+li{
+    list-style-type:none;
+}
