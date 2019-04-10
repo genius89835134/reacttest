@@ -23,6 +23,14 @@
 .Product>div{
     text-align: left;
 }
+.Product>.P_div1,.P_div2{
+    display:inline-block;
+    vertical-align:text-top;
+}
+.Product_div3>ul li{
+    display:inline;
+    padding:10px;
+}
 li{
     list-style-type:none;
 }

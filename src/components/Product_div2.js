@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 class Product_div2 extends Component {
   render() {
     return (
-      <div className="Product_div2" style={{ width: '300px' }}>
+      <div className="Product_div2" style={{ width: '400px' }}>
         <h3>商品介紹</h3>
         <hr></hr>
         材料：黃銅<br />
