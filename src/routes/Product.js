@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 class Product extends Component {
+  renderselect(stock) {
+    const option = stock.map((option, index) => {
+      if (index < 1) {
 
+      } else if (index == 1) {
+        return <option key={`stock-${index}`} value={index} selected="selected">{option}</option>
+      } else {
+        return <option key={`stock-${index}`} value={index}>{option}</option>
+      }
+    });
+    return option;
+  }
   render() {
-    //console.log(this.props.products);
     const id = this.props.match.params.id;
     //console.log(id);
     const p = this.props.products.find(p => p.id === Number(id));
+    const stock = [];
+    for (let i = 0; i <= p.stock; i++) {
+      stock.push(i);
+    }
     return (
       <div className="Product">
         <div className="P_div1">
@@ -45,19 +60,17 @@ class Product extends Component {
           </div>
         </div>
         <div className="P_div2">
-          <div className="Product_div4" style={{ width: '500px', height: '300px' }}>
-            <span><font color="#009697" size="6">{p.name}</font></span><br />
+          <div className="Product_div4" style={{ width: '700px', height: '290px' }}>
+            <font color="black" size="6">{p.name}</font><br />
             <font color="#009697" size="6">$NT{p.price}</font><br />
             數量<br />
-            <select >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
+            <select>
+              {this.renderselect(stock)}
             </select><br />
             <button>放入購物車</button>
           </div>
           <hr></hr>
-          <div className="Product_div5" style={{ width: '500px' }}>
+          <div className="Product_div5" style={{ width: '700px' }}>
             <h3>商品資訊</h3><br />
             <table>
               <thead>

@@ -60,7 +60,7 @@ class App extends Component {
         <div className="App">
           <Header></Header>
           <Menu></Menu>
-          <Route path="/" render={props => this.renderRoute(props, '', ['products', 'title'])} />
+          <Route path="/" exact render={props => this.renderRoute(props, '', ['products', 'title'])} />
           <Route path="/car" component={Car} />
           <Route path="/product/:id" render={props => this.renderRoute(props, 'product', ['products'])} />
           <Footer></Footer>

@@ -8,7 +8,7 @@ class Header extends Component {
         <input placeholder='乳液'></input>
         <button>搜尋</button>
         <button>登入/註冊</button>
-        <img src={require('../img/shopping-cart.png')} alt="Shopping-cart" height="30"></img>
+        <Link to="/Car"><img src={require('../img/shopping-cart.png')} alt="Shopping-cart" height="30"></img></Link>
       </div>
     )
   }

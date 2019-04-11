@@ -17,6 +17,7 @@
 }
 .item_table>div{
     display:inline-block;
+    height:320px;
     margin:1%;
 }
 .Content1{
@@ -31,6 +32,7 @@
     text-align: left;
 }
 .Product>.P_div1,.P_div2{
+    margin-top:25px;
     display:inline-block;
     vertical-align:text-top;
 }
@@ -40,4 +42,16 @@
 }
 li{
     list-style-type:none;
+}
+.Product_div4>button{
+    font-family: '微軟正黑體';
+    font-size:18px;
+    margin-top:50px;
+    border-radius: 10px;
+    border:0;
+    color:white;
+    background-color:#f5548c;
+    width:50%;
+    height:50px;
+
 }
