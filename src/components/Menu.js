@@ -4,7 +4,7 @@ class Menu extends Component {
   render() {
     return (
       <div className="Menu">
-        <ul>
+        <ul style={{ paddingTop: 10 }}>
           <li>主打活動</li>
           <li>配件飾品</li>
           <li>居家生活</li>

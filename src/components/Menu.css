@@ -4,13 +4,22 @@
 }
 .Menu>ul li {
     display:inline;
+    vertical-align:text-top;
     padding:2%;
 }
 .Footer{
     background-color: #f5f4f3;
+    width:100%;
+    position:fixed;
+    bottom: 0px;
 }
 .Footer>div{
     display:inline-block;
+    vertical-align:text-top;
+}
+.item_table>div{
+    display:inline-block;
+    margin:1%;
 }
 .Content1{
     height:300px;
