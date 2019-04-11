@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 class Home extends Component {
-  i = 0;
-  renderProducts(p = {}) {
 
-    console.log(this.props.products);
+  constructor(props) {
+    super(props);
+    this.history = props.history;
+  }
+
+  renderProducts(p = {}) {
     return (
-      <div width="150px">
-        <img src={p.img} alt0={p.name} width="150"height="150"></img><br/>
+      <div key={`product-${p.id}`} width="150px"
+        onClick={() => this.history.push(`./product/${p.id}`)}>
+        <img src={p.img} alt={p.name} width="150" height="150"></img><br />
         <font>{p.name}</font><br />
         <font color="green">{`$NT${p.price}`}</font>
       </div>

@@ -29,11 +29,11 @@ class App extends Component {
       },
       {
         id: 2, name: 'Milk Coffee 牛奶咖啡味大豆蠟燭', material: '蠟', price: 799, made: '香港', stock: 4,
-         img: 'https://cdn02.pinkoi.com/product/jtnnDPY7/0/1/800x0.jpg',
+        img: 'https://cdn02.pinkoi.com/product/jtnnDPY7/0/1/800x0.jpg',
         summary: '咖啡，焦糖。 以100%美國製大豆蠟，配上可持續生產的木芯及不含鄰苯二甲酸酯的香薰油製成。'
       },
       {
-        id: 3, name: 'MICO化學系滴濾式手沖咖啡壺套裝', material: '玻璃', price: 969, made: '中國大陸', stock: 10, 
+        id: 3, name: 'MICO化學系滴濾式手沖咖啡壺套裝', material: '玻璃', price: 969, made: '中國大陸', stock: 10,
         img: 'https://cdn01.pinkoi.com/product/nZnBAzwL/0/3/800x0.jpg',
         summary: '一款全新簡單實用的手沖咖啡壺套裝，盡情展現您實驗室一樣專業的咖啡魔法。'
       },
@@ -41,13 +41,13 @@ class App extends Component {
     title: 'React',
   }
   renderRoute(routerProps, name = '', payloadProps = []) {
-    // 簡單版本 
-    // let state = {};
-    // payloadProps.forEach(p => state[p] = this.state[p]);
+    let state = {};
+    payloadProps.forEach(value => state[value] = this.state[value]);
 
     // 困難版本 Pure Function
-    const state = payloadProps.reduce((p, v) => { return { ...p, [v]: this.state[v] } }, {});
+    //const state = payloadProps.reduce((p, v) => { return { ...p, [v]: this.state[v] } }, {});
 
+    //console.log(state);
     switch (name) {
       default:
       case '': return <Home {...routerProps} {...state} />;
@@ -61,8 +61,8 @@ class App extends Component {
           <Header></Header>
           <Menu></Menu>
           <Route path="/" render={props => this.renderRoute(props, '', ['products', 'title'])} />
-          <Route path="/Car" component={Car} />
-          <Route path="/Product" component={Product} />
+          <Route path="/car" component={Car} />
+          <Route path="/product/:id" render={props => this.renderRoute(props, 'product', ['products'])} />
           <Footer></Footer>
         </div>
       </Router>
