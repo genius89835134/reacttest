@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 class Home extends Component {
-
   constructor(props) {
     super(props);
     this.history = props.history;
@@ -16,9 +15,10 @@ class Home extends Component {
       </div>
     );
   }
+
   render() {
     return (
-      <div className="Home">
+      <div className="Home" >
         <h3>編輯嚴選</h3>
         <div className="item_table">
           {this.props.products.map(p => this.renderProducts(p))}

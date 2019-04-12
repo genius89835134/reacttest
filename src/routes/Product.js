@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 class Product extends Component {
+  constructor(props) {
+    super(props);
+    this.history = props.history;
+  }
+
+  state = {
+    num: 1,
+  }
   renderselect(stock) {
     const option = stock.map((option, index) => {
       if (index < 1) {
-
       } else if (index == 1) {
         return <option key={`stock-${index}`} value={index} selected="selected">{option}</option>
       } else {
@@ -13,6 +20,23 @@ class Product extends Component {
       }
     });
     return option;
+  }
+
+  car = (price,name) => {
+    let iname = [];
+    let iprice = [];
+    let inum = [];
+    if (localStorage.getItem("name") && localStorage.getItem("num") && localStorage.getItem("price")) {
+      iname.push(localStorage.getItem("name"));
+      inum.push(localStorage.getItem("num"));
+      iprice.push(localStorage.getItem("price"));
+    }
+    iname.push(name);
+    inum.push(this.state.num);
+    iprice.push(price);
+    localStorage.setItem("name", iname);
+    localStorage.setItem("num", inum);
+    localStorage.setItem("price", iprice);
   }
   render() {
     const id = this.props.match.params.id;
@@ -64,10 +88,10 @@ class Product extends Component {
             <font color="black" size="6">{p.name}</font><br />
             <font color="#009697" size="6">$NT{p.price}</font><br />
             數量<br />
-            <select>
+            <select onChange={(e) => this.state.num = (e.target.value)}>
               {this.renderselect(stock)}
             </select><br />
-            <button>放入購物車</button>
+            <button onClick={() => this.car(p.price, p.name)}>放入購物車</button>
           </div>
           <hr></hr>
           <div className="Product_div5" style={{ width: '700px' }}>

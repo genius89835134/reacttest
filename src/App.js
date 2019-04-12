@@ -9,7 +9,6 @@ import Car from './routes/Car';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Menu from './components/Menu';
-import News from './components/News';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -39,6 +38,9 @@ class App extends Component {
       },
     ],
     title: 'React',
+    name: {},
+    price: {},
+    num: {},
   }
   renderRoute(routerProps, name = '', payloadProps = []) {
     let state = {};
@@ -55,6 +57,9 @@ class App extends Component {
     }
   }
   render() {
+    localStorage.setItem("name", '')
+    localStorage.setItem("num", '')
+    localStorage.setItem("price", '')
     return (
       <Router>
         <div className="App">
@@ -62,7 +67,7 @@ class App extends Component {
           <Menu></Menu>
           <Route path="/" exact render={props => this.renderRoute(props, '', ['products', 'title'])} />
           <Route path="/car" component={Car} />
-          <Route path="/product/:id" render={props => this.renderRoute(props, 'product', ['products'])} />
+          <Route path="/product/:id" render={props => this.renderRoute(props, 'product', ['products', 'name', 'price', 'num'])} />
           <Footer></Footer>
         </div>
       </Router>
