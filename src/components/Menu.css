@@ -31,6 +31,7 @@
 .Product>div{
     text-align: left;
 }
+/** 最好不要用這種無特殊意義的命名 div1,div2,div3....divN */
 .Product>.P_div1,.P_div2{
     margin-top:25px;
     display:inline-block;
@@ -44,14 +45,17 @@ li{
     list-style-type:none;
 }
 .Product_div4>button{
-    font-family: '微軟正黑體';
+    /* font-family: '微軟正黑體'; */
+    /* 最好寫英文，中文容易出問題 */
+    font-family: 'Microsoft JhengHei';
     font-size:18px;
     margin-top:50px;
     border-radius: 10px;
     border:0;
-    color:white;
+    /* color:white; */
+    /* 最好寫色碼 */
+    color: #fff;
     background-color:#f5548c;
     width:50%;
     height:50px;
-
 }

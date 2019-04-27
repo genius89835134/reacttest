@@ -1,28 +1,47 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
+// import { Link, Redirect } from 'react-router-dom';
+// 下面這個是什麼? 應該是你誤按什麼建議修正的東西
+// import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 class Product extends Component {
   constructor(props) {
     super(props);
     this.history = props.history;
+    this.state = {
+      num: 1,
+    }
   }
 
-  state = {
-    num: 1,
-  }
+  // 如果你都寫建構子 constructor, 就建議把 state 寫在上面
+  // state = {
+  //   num: 1,
+  // }
   renderselect(stock) {
-    const option = stock.map((option, index) => {
-      if (index < 1) {
-      } else if (index == 1) {
-        return <option key={`stock-${index}`} value={index} selected="selected">{option}</option>
-      } else {
-        return <option key={`stock-${index}`} value={index}>{option}</option>
+    return stock.map((st, index) => {
+      // 在 map 裡面最後一定要 return 東西回去, 寫在 if else 的作用域不同,是不算的
+      // if (index < 1) {
+      //   // 這裡的意義就多餘了, 應該要思考如何省略掉這行
+      // } else if (index == 1) {
+      //   return <option key={`stock-${index}`} value={index} selected="selected">{option}</option>
+      // } else {
+      //   return <option key={`stock-${index}`} value={index}>{option}</option>
+      // }
+
+      // 學長重寫範例
+      let option = null;
+      if (index === 1) {
+        // 預設值不要用 selected，改使用 defaultChecked 
+        option = <option key={`stock-${index}`} value={index} defaultChecked>{st}</option>
+      } else if (index > 1) {
+        option = <option key={`stock-${index}`} value={index}>{st}</option>
       }
+      // 就是這裡，最後一定要 return
+      return option;
     });
-    return option;
+    // 直接 return 就好了, 不用再額外命名變數
+    // return options;
   }
 
-  car = (price,name) => {
+  car = (price, name) => {
     let iname = [];
     let iprice = [];
     let inum = [];
@@ -42,10 +61,18 @@ class Product extends Component {
     const id = this.props.match.params.id;
     //console.log(id);
     const p = this.props.products.find(p => p.id === Number(id));
-    const stock = [];
-    for (let i = 0; i <= p.stock; i++) {
-      stock.push(i);
-    }
+
+    // 下面 for loop 就不要用這種了，直接用 functional 寫法
+    // const stock = p.stock.map(p);
+    // for (let i = 0; i <= p.stock; i++) {
+    //   stock.push(i);
+    // }
+
+    // [...Array(p.stock)] 產一個長度為 stock 的陣列
+    // https://stackoverflow.com/questions/4852017/how-to-initialize-an-arrays-length-in-javascript
+    const stock = [...Array(p.stock)].map((x, index) => index);
+
+
     return (
       <div className="Product">
         <div className="P_div1">
@@ -65,7 +92,8 @@ class Product extends Component {
             <table>
               <thead>
                 <tr>
-                  <th rowspan="3" valign="top">國際運費</th>
+                  { /** 使用駝峰式，JSX 規定，不然會出現警告 */}
+                  <th rowSpan="3" valign="top">國際運費</th>
                   <th>從香港寄出</th>
                 </tr>
                 <tr>
@@ -88,7 +116,9 @@ class Product extends Component {
             <font color="black" size="6">{p.name}</font><br />
             <font color="#009697" size="6">$NT{p.price}</font><br />
             數量<br />
-            <select onChange={(e) => this.state.num = (e.target.value)}>
+            { /** 請乖乖使用 setState，否則 React 會警告你 */}
+            { /** <select onChange={(e) => this.state.num = (e.target.value)}> */}
+            <select onChange={(e) => this.setState({ num: e.target.value })}>
               {this.renderselect(stock)}
             </select><br />
             <button onClick={() => this.car(p.price, p.name)}>放入購物車</button>

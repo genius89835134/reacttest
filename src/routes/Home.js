@@ -6,9 +6,13 @@ class Home extends Component {
   }
 
   renderProducts(p = {}) {
+    // div 要換行，就把該元素的每個屬性都換行
     return (
-      <div key={`product-${p.id}`} width="150px"
-        onClick={() => this.history.push(`./product/${p.id}`)}>
+      <div
+        key={`product-${p.id}`}
+        width="150px"
+        onClick={() => this.history.push(`./product/${p.id}`)}
+      >
         <img src={p.img} alt={p.name} width="150" height="150"></img><br />
         <font>{p.name}</font><br />
         <font color="green">{`$NT${p.price}`}</font>
